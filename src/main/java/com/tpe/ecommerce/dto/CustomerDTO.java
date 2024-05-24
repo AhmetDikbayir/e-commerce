@@ -1,9 +1,6 @@
 package com.tpe.ecommerce.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
@@ -15,6 +12,8 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder
 public class CustomerDTO {
 
     @NotNull(message = "Name cannot be null!")
