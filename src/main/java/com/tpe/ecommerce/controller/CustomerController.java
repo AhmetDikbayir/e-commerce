@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
@@ -21,14 +22,33 @@ public class CustomerController {
     public ResponseEntity<String> saveCustomer(@Valid @RequestBody CustomerDTO customerDTO){
         customerService.saveCustomer(customerDTO);
         return new ResponseEntity<>("Ok", HttpStatus.CREATED);
-
     }
 
+    @GetMapping //GetAll Customers
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers(){
+        List<CustomerDTO> customerDTOs = customerService.getAll();
+        return ResponseEntity.ok(customerDTOs);
+    }
 
+    @GetMapping("/query")
+    public ResponseEntity<CustomerDTO> getById(@Valid @RequestParam("id") Long id){
+        CustomerDTO customerDTO = customerService.getById(id);
+        return ResponseEntity.ok(customerDTO);
+    }
 
-    @GetMapping
-    public ResponseEntity<String> getAllCustomers(){
-        String message = "Everything is fine";
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteCustomer(@RequestParam("id") Long id){
+        customerService.deleteById(id);
+        String message = "Customer was deleted successfully";
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateCustomer(@PathVariable("id") Long id,
+                                                      @RequestBody CustomerDTO customerDTO){
+        customerService.updateCustomer(id, customerDTO);
+        String message = "Customer was successfully updated";
         return ResponseEntity.ok(message);
     }
+
 }

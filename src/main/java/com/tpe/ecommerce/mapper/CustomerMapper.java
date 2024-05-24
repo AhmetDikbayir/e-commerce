@@ -4,12 +4,12 @@ import com.tpe.ecommerce.domain.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Component
 public class CustomerMapper {
 
-    public CustomerDTO customerTocustomerDTO(Customer customer){
+    public CustomerDTO customerToCustomerDTO(Customer customer) {
         return CustomerDTO.builder()
                 .name(customer.getName())
                 .lastName(customer.getLastName())
