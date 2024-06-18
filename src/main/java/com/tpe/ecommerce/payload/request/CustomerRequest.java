@@ -1,21 +1,16 @@
-package com.tpe.ecommerce.dto;
+package com.tpe.ecommerce.payload.request;
 
-import lombok.*;
+import com.tpe.ecommerce.domain.OrderItem;
 
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
-public class CustomerDTO {
-
+public class CustomerRequest {
     @NotNull(message = "Name cannot be null!")
     @NotEmpty(message = "Name cannot be empty")
     @Size(min = 2, max = 50)
@@ -33,4 +28,6 @@ public class CustomerDTO {
     private String email;
 
     private String phone;
+
+    private Set<OrderItem> orders;
 }

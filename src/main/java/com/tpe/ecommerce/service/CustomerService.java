@@ -4,14 +4,12 @@ import com.tpe.ecommerce.domain.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
 import com.tpe.ecommerce.exceptions.ConflictException;
 import com.tpe.ecommerce.exceptions.ResourceNotFoundException;
-import com.tpe.ecommerce.mapper.CustomerMapper;
+import com.tpe.ecommerce.payload.mapper.CustomerMapper;
 import com.tpe.ecommerce.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +48,7 @@ public class CustomerService {
         customerRepository.deleteById(id);
 
     }
+
 
     public void updateCustomer(Long id, CustomerDTO customerDTO) {
         Customer updatedCustomer = findById(id);

@@ -7,10 +7,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder(toBuilder = true)
 public class Product {
 
     @Id

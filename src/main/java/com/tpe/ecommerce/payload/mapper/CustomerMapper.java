@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.mapper;
+package com.tpe.ecommerce.payload.mapper;
 
 import com.tpe.ecommerce.domain.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
