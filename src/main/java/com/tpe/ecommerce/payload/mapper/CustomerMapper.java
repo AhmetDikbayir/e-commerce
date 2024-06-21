@@ -1,10 +1,8 @@
 package com.tpe.ecommerce.payload.mapper;
 
-import com.tpe.ecommerce.domain.Customer;
+import com.tpe.ecommerce.domain.user.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class CustomerMapper {

@@ -1,24 +1,18 @@
 package com.tpe.ecommerce.payload.request;
 
-import com.tpe.ecommerce.domain.OrderItem;
-
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Set;
+import javax.validation.constraints.*;
 
 public class CustomerRequest {
     @NotNull(message = "Name cannot be null!")
     @NotEmpty(message = "Name cannot be empty")
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Your name should be at least 2 chars")
+    @Pattern(regexp = "\\A(?!\\s*\\Z).+", message = "Your username must consist of the characters.")
     private String name;
 
     @NotNull(message = "Lastname cannot be null!")
     @NotEmpty(message = "Lastname cannot be empty")
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Your lastname should be at least 2 chars")
+    @Pattern(regexp = "\\A(?!\\s*\\Z).+", message = "Your username must consist of the characters.")
     private String lastName;
 
     @NotNull(message = "Email cannot be null!")
@@ -27,7 +21,9 @@ public class CustomerRequest {
     @Email(message = "Provide valid email")
     private String email;
 
-    private String phone;
-
-    private Set<OrderItem> orders;
+    @NotNull(message = "Please enter your phone number")
+    @Size(min = 12, max = 12,message = "Your phone number should be 12 characters long")
+    @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",
+            message = "Please enter valid phone number")
+    private String phoneNumber;
 }

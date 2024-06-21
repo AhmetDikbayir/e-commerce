@@ -1,6 +1,6 @@
-package com.tpe.ecommerce.service;
+package com.tpe.ecommerce.service.business;
 
-import com.tpe.ecommerce.domain.Customer;
+import com.tpe.ecommerce.domain.user.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
 import com.tpe.ecommerce.exceptions.ConflictException;
 import com.tpe.ecommerce.exceptions.ResourceNotFoundException;

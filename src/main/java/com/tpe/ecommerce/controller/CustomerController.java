@@ -1,8 +1,7 @@
 package com.tpe.ecommerce.controller;
 
-import com.tpe.ecommerce.domain.Customer;
 import com.tpe.ecommerce.dto.CustomerDTO;
-import com.tpe.ecommerce.service.CustomerService;
+import com.tpe.ecommerce.service.business.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

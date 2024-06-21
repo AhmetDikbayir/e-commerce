@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.domain;
+package com.tpe.ecommerce.domain.business;
 
 import lombok.*;
 
