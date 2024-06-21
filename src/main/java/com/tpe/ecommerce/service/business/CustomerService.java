@@ -4,7 +4,6 @@ import com.tpe.ecommerce.entity.user.Customer;
 import com.tpe.ecommerce.exceptions.ConflictException;
 import com.tpe.ecommerce.exceptions.ResourceNotFoundException;
 import com.tpe.ecommerce.payload.mapper.CustomerMapper;
-import com.tpe.ecommerce.payload.messages.SuccessMessages;
 import com.tpe.ecommerce.payload.request.CustomerRequest;
 import com.tpe.ecommerce.payload.response.CustomerResponse;
 import com.tpe.ecommerce.repository.CustomerRepository;
@@ -50,7 +49,7 @@ public class CustomerService {
     }
 
 
-    public String updateCustomer(Long id, CustomerRequest customerRequest) {
+    public CustomerResponse updateCustomer(Long id, CustomerRequest customerRequest) {
         Customer updatedCustomer = findById(id);
         Boolean isEmailExist = customerRepository.existsByEmail(customerRequest.getEmail());
         if(isEmailExist && updatedCustomer.getEmail().equals(customerRequest.getEmail())){
@@ -61,7 +60,8 @@ public class CustomerService {
         updatedCustomer.setLastName(customerRequest.getLastName());
         updatedCustomer.setPhoneNumber(customerRequest.getPhoneNumber());
         customerRepository.save(updatedCustomer);
-        return SuccessMessages
+
+        return customerMapper.customerToCustomerResponse(updatedCustomer);
 
 
 
