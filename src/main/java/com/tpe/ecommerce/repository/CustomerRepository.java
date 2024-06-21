@@ -1,6 +1,6 @@
 package com.tpe.ecommerce.repository;
 
-import com.tpe.ecommerce.domain.user.Customer;
+import com.tpe.ecommerce.entity.user.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

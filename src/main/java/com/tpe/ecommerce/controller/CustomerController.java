@@ -1,7 +1,11 @@
 package com.tpe.ecommerce.controller;
 
-import com.tpe.ecommerce.dto.CustomerDTO;
+import com.tpe.ecommerce.payload.messages.ErrorMessages;
+import com.tpe.ecommerce.payload.messages.SuccessMessages;
+import com.tpe.ecommerce.payload.request.CustomerRequest;
+import com.tpe.ecommerce.payload.response.CustomerResponse;
 import com.tpe.ecommerce.service.business.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,27 +16,26 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
     private CustomerService customerService;
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveCustomer(@Valid @RequestBody CustomerDTO customerDTO){
-        customerService.saveCustomer(customerDTO);
+    public ResponseEntity<String> saveCustomer(@RequestBody @Valid CustomerRequest customerRequest){
+        customerService.saveCustomer(customerRequest);
         return new ResponseEntity<>("Ok", HttpStatus.CREATED);
     }
 
     @GetMapping //GetAll Customers
-    public ResponseEntity<List<CustomerDTO>> getAllCustomers(){
-        List<CustomerDTO> customerDTOs = customerService.getAll();
-        return ResponseEntity.ok(customerDTOs);
+    public ResponseEntity<List<CustomerResponse>> getAllCustomers(){
+        return ResponseEntity.ok(customerService.getAll());
     }
 
     @GetMapping("/query")
-    public ResponseEntity<CustomerDTO> getById(@Valid @RequestParam("id") Long id){
-        CustomerDTO customerDTO = customerService.getById(id);
-        return ResponseEntity.ok(customerDTO);
+    public ResponseEntity<CustomerResponse> getById(@Valid @RequestParam("id") Long id){
+        CustomerResponse customerResponse = customerService.getById(id);
+        return ResponseEntity.ok(customerResponse);
     }
 
     @DeleteMapping("/delete")
@@ -44,10 +47,8 @@ public class CustomerController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateCustomer(@PathVariable("id") Long id,
-                                                      @RequestBody CustomerDTO customerDTO){
-        customerService.updateCustomer(id, customerDTO);
-        String message = "Customer was successfully updated";
-        return ResponseEntity.ok(message);
+                                                      @RequestBody @Valid CustomerRequest customerRequest){
+        return ResponseEntity.ok(customerService.updateCustomer(id, customerRequest));
     }
 
 }

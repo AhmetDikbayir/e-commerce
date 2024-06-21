@@ -1,11 +1,10 @@
-package com.tpe.ecommerce.domain.user;
+package com.tpe.ecommerce.entity.user;
 
-import com.tpe.ecommerce.domain.business.OrderItem;
-import com.tpe.ecommerce.domain.enums.Gender;
+import com.tpe.ecommerce.entity.business.OrderItem;
+import com.tpe.ecommerce.entity.enums.Gender;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -26,15 +25,19 @@ public class Customer {
     @Column(nullable = false, length = 50)
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     @Column(nullable = false, unique = true, length = 50)
     private String email;
 
+    @Column(nullable = false, length = 12)
     private String phoneNumber;
+
+    private Address address;
 
     @OneToMany(mappedBy = "customer")
     private Set<OrderItem> orders;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+
 }

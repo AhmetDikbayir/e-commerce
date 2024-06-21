@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.domain.enums;
+package com.tpe.ecommerce.entity.enums;
 
 public enum Gender {
 

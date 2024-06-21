@@ -1,7 +1,17 @@
 package com.tpe.ecommerce.payload.request;
 
+import com.tpe.ecommerce.entity.user.Address;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class CustomerRequest {
     @NotNull(message = "Name cannot be null!")
     @NotEmpty(message = "Name cannot be empty")
@@ -26,4 +36,6 @@ public class CustomerRequest {
     @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",
             message = "Please enter valid phone number")
     private String phoneNumber;
+
+    private Address address;
 }

@@ -1,7 +1,6 @@
-package com.tpe.ecommerce.domain.business;
+package com.tpe.ecommerce.entity.business;
 
-import com.tpe.ecommerce.domain.business.Product;
-import com.tpe.ecommerce.domain.user.Customer;
+import com.tpe.ecommerce.entity.user.Customer;
 import lombok.*;
 
 import javax.persistence.*;

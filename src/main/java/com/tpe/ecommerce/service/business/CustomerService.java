@@ -1,27 +1,27 @@
 package com.tpe.ecommerce.service.business;
 
-import com.tpe.ecommerce.domain.user.Customer;
-import com.tpe.ecommerce.dto.CustomerDTO;
+import com.tpe.ecommerce.entity.user.Customer;
 import com.tpe.ecommerce.exceptions.ConflictException;
 import com.tpe.ecommerce.exceptions.ResourceNotFoundException;
 import com.tpe.ecommerce.payload.mapper.CustomerMapper;
+import com.tpe.ecommerce.payload.messages.SuccessMessages;
+import com.tpe.ecommerce.payload.request.CustomerRequest;
+import com.tpe.ecommerce.payload.response.CustomerResponse;
 import com.tpe.ecommerce.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
+    private final CustomerRepository customerRepository;
     private CustomerMapper customerMapper;
-    public void saveCustomer(CustomerDTO customerDTO) {
-        Customer customer = customerMapper.customerDTOTocustomer(customerDTO);
+    public void saveCustomer(CustomerRequest customerRequest) {
+        Customer customer = customerMapper.customerRequestToCustomer(customerRequest);
         customerRepository.save(customer);
     }
 
@@ -29,38 +29,39 @@ public class CustomerService {
         Customer customer = customerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
         return customer;
     }
-    public CustomerDTO getById(Long id) {
+    public CustomerResponse getById(Long id) {
         Customer customer = customerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-        return customerDTO;
+        CustomerResponse customerResponse = customerMapper.customerToCustomerResponse(customer);
+        return customerResponse;
     }
 
-    public List<CustomerDTO> getAll() {
+    public List<CustomerResponse> getAll() {
         List<Customer> customers =  customerRepository.findAll();
-        List<CustomerDTO> customerDTOS = customers.stream()
-                .map(customerMapper::customerToCustomerDTO)
+        List<CustomerResponse> customerDTOS = customers.stream()
+                .map(customerMapper::customerToCustomerResponse)
                 .collect(Collectors.toList());
         return customerDTOS;
     }
 
     public void deleteById(Long id) {
-        CustomerDTO customerDTO = getById(id);
+        CustomerResponse customerResponse = getById(id);
         customerRepository.deleteById(id);
 
     }
 
 
-    public void updateCustomer(Long id, CustomerDTO customerDTO) {
+    public String updateCustomer(Long id, CustomerRequest customerRequest) {
         Customer updatedCustomer = findById(id);
-        Boolean isEmailExist = customerRepository.existsByEmail(customerDTO.getEmail());
-        if(isEmailExist && updatedCustomer.getEmail().equals(customerDTO.getEmail())){
+        Boolean isEmailExist = customerRepository.existsByEmail(customerRequest.getEmail());
+        if(isEmailExist && updatedCustomer.getEmail().equals(customerRequest.getEmail())){
             throw new ConflictException("Email is already exists");
         }
-        updatedCustomer.setEmail(customerDTO.getEmail());
-        updatedCustomer.setName(customerDTO.getName());
-        updatedCustomer.setLastName(customerDTO.getLastName());
-        updatedCustomer.setPhone(customerDTO.getPhone());
+        updatedCustomer.setEmail(customerRequest.getEmail());
+        updatedCustomer.setName(customerRequest.getName());
+        updatedCustomer.setLastName(customerRequest.getLastName());
+        updatedCustomer.setPhoneNumber(customerRequest.getPhoneNumber());
         customerRepository.save(updatedCustomer);
+        return SuccessMessages
 
 
 
