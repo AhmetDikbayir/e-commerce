@@ -21,31 +21,31 @@ public class CustomerController {
 
     private CustomerService customerService;
 
-    @PostMapping("/save")
+    @PostMapping("/save") //http://localhost:8080/customers/save
     public ResponseEntity<String> saveCustomer(@RequestBody @Valid CustomerRequest customerRequest){
         customerService.saveCustomer(customerRequest);
         return new ResponseEntity<>("Ok", HttpStatus.CREATED);
     }
 
-    @GetMapping //GetAll Customers
+    @GetMapping //http://localhost:8080/customers
     public ResponseEntity<List<CustomerResponse>> getAllCustomers(){
         return ResponseEntity.ok(customerService.getAll());
     }
 
-    @GetMapping("/query")
+    @GetMapping("/query") //http://localhost:8080/customers/query
     public ResponseEntity<CustomerResponse> getById(@Valid @RequestParam("id") Long id){
         CustomerResponse customerResponse = customerService.getById(id);
         return ResponseEntity.ok(customerResponse);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete") //http://localhost:8080/customers/delete?id=2
     public ResponseEntity<String> deleteCustomer(@RequestParam("id") Long id){
         customerService.deleteById(id);
         String message = "Customer was deleted successfully";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update/{id}") //http://localhost:8080/customers/update/3
     public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable("id") Long id,
                                                       @RequestBody @Valid CustomerRequest customerRequest){
         return new ResponseEntity<>(customerService.updateCustomer(id, customerRequest), HttpStatus.OK);

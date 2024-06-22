@@ -1,7 +1,6 @@
 package com.tpe.ecommerce.payload.mapper;
 
 import com.tpe.ecommerce.entity.user.Customer;
-import com.tpe.ecommerce.dto.CustomerDTO;
 import com.tpe.ecommerce.payload.request.CustomerRequest;
 import com.tpe.ecommerce.payload.response.CustomerResponse;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ public class CustomerMapper {
                 .name(customer.getName())
                 .lastName(customer.getLastName())
                 .email(customer.getEmail())
-                .phone(customer.getPhone())
+                .phoneNumber(customer.getPhoneNumber())
                 .build();
     }
 
