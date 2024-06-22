@@ -17,17 +17,17 @@ public class OrderItem {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @NotNull(message = "Please enter a valid quantity")
     @Column(nullable = false)
     private Integer quantity;
 
-    @NotNull
+    @Column(nullable = false)
     private Double totalPrice;
 
-    @NotNull(message = "Please enter a product")
+    @Column(nullable = false)
     @ManyToOne
     private Product product;
-    @NotNull
+
+    @Column(nullable = false)
     @ManyToOne
     private Customer customer;
 }
