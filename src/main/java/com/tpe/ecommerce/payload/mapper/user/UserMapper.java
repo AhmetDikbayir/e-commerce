@@ -1,15 +1,15 @@
-package com.tpe.ecommerce.payload.mapper;
+package com.tpe.ecommerce.payload.mapper.user;
 
-import com.tpe.ecommerce.entity.user.Customer;
-import com.tpe.ecommerce.payload.request.CustomerRequest;
-import com.tpe.ecommerce.payload.response.CustomerResponse;
+import com.tpe.ecommerce.entity.user.User;
+import com.tpe.ecommerce.payload.request.user.UserRequest;
+import com.tpe.ecommerce.payload.response.user.UserResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerMapper {
+public class UserMapper {
 
-    public CustomerResponse customerToCustomerResponse(Customer customer) {
-        return CustomerResponse.builder()
+    public UserResponse customerToCustomerResponse(User customer) {
+        return UserResponse.builder()
                 .name(customer.getName())
                 .lastName(customer.getLastName())
                 .email(customer.getEmail())
@@ -17,8 +17,8 @@ public class CustomerMapper {
                 .build();
     }
 
-    public Customer customerRequestToCustomer(CustomerRequest customerRequest){
-        return Customer.builder()
+    public User customerRequestToCustomer(UserRequest customerRequest){
+        return User.builder()
                 .name(customerRequest.getName())
                 .lastName(customerRequest.getLastName())
                 .email(customerRequest.getEmail())

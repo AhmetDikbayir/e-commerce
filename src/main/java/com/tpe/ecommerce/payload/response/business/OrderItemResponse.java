@@ -1,14 +1,11 @@
-package com.tpe.ecommerce.payload.response;
+package com.tpe.ecommerce.payload.response.business;
 
 import com.tpe.ecommerce.entity.business.Product;
-import com.tpe.ecommerce.entity.user.Customer;
+import com.tpe.ecommerce.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
 
 @Data
 @AllArgsConstructor
@@ -24,5 +21,5 @@ public class OrderItemResponse {
 
     private Product product;
 
-    private Customer customer;
+    private User customer;
 }

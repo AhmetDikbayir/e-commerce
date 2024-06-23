@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Builder(toBuilder = true)
-public class Customer {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

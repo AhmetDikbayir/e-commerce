@@ -1,10 +1,9 @@
 package com.tpe.ecommerce.entity.business;
 
-import com.tpe.ecommerce.entity.user.Customer;
+import com.tpe.ecommerce.entity.user.User;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @AllArgsConstructor
@@ -29,5 +28,5 @@ public class OrderItem {
 
     @Column(nullable = false)
     @ManyToOne
-    private Customer customer;
+    private User customer;
 }
