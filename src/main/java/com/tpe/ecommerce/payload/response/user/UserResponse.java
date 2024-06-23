@@ -1,18 +1,16 @@
-package com.tpe.ecommerce.payload.response;
+package com.tpe.ecommerce.payload.response.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class CustomerResponse {
+public class UserResponse {
     private String name;
     private String lastName;
     private String email;

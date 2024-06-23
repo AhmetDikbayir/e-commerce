@@ -1,7 +1,7 @@
-package com.tpe.ecommerce.payload.request;
+package com.tpe.ecommerce.payload.request.business;
 
 import com.tpe.ecommerce.entity.business.Product;
-import com.tpe.ecommerce.entity.user.Customer;
+import com.tpe.ecommerce.entity.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,5 +25,5 @@ public class OrderItemRequest {
     private Product product;
 
     @NotNull(message = "Customer field cannot be null")
-    private Customer customer;
+    private User customer;
 }

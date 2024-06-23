@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.payload.request;
+package com.tpe.ecommerce.payload.request.user;
 
 import com.tpe.ecommerce.entity.user.Address;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class CustomerRequest {
+public class UserRequest {
     @NotNull(message = "Name cannot be null!")
     @NotEmpty(message = "Name cannot be empty")
     @Size(min = 2, max = 50, message = "Your name should be at least 2 chars")

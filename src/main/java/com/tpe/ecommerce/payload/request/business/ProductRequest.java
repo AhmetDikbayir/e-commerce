@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.payload.request;
+package com.tpe.ecommerce.payload.request.business;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
