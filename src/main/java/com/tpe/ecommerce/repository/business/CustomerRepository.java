@@ -1,4 +1,4 @@
-package com.tpe.ecommerce.repository;
+package com.tpe.ecommerce.repository.business;
 
 import com.tpe.ecommerce.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

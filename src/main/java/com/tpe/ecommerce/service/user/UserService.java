@@ -6,7 +6,7 @@ import com.tpe.ecommerce.exceptions.ResourceNotFoundException;
 import com.tpe.ecommerce.payload.mapper.user.UserMapper;
 import com.tpe.ecommerce.payload.request.user.UserRequest;
 import com.tpe.ecommerce.payload.response.user.UserResponse;
-import com.tpe.ecommerce.repository.CustomerRepository;
+import com.tpe.ecommerce.repository.business.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
