@@ -27,5 +27,8 @@ public class Product {
     private String brand;
 
     @Column(nullable = false)
+    private Integer stock;
+
+    @Column(nullable = false)
     private Double price;
 }

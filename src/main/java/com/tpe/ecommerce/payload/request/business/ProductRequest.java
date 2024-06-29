@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +23,9 @@ public class ProductRequest {
     @NotNull(message = "Brand cannot be null!!")
     @NotEmpty(message = "Brand cannot be empty!!")
     private String brand;
+
+    @NotNull(message = "Stock cannot be null")
+    private Integer stock;
 
     @NotNull(message = "Price cannot be null!!")
     private Double price;
