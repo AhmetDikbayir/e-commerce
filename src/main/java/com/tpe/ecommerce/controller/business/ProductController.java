@@ -16,13 +16,13 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping("/save")  //localhost://8080/products/save
+    @PostMapping("/save")  //http:localhost://8080/products/save
     //@PreAuthorize("ADMIN")
     public ResponseEntity<ProductResponse> saveProduct(@RequestBody @Valid ProductRequest productRequest){
         return productService.saveProduct(productRequest);
     }
 
-    @GetMapping("/{productId}")
+    @GetMapping("/{productId}")  //http://localhost:8080/products/1
     //@PreAuthoritize("ADMIN")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long productId){
         return productService.getProductById(productId);
