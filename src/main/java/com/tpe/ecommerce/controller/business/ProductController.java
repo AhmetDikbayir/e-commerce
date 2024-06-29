@@ -22,11 +22,7 @@ public class ProductController {
         return productService.saveProduct(productRequest);
     }
 
-    @GetMapping("/{productId}")  //http://localhost:8080/products/1 +GET
-    //@PreAuthoritize("ADMIN")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long productId){
-        return productService.getProductById(productId);
-    }
+
 
 
 
