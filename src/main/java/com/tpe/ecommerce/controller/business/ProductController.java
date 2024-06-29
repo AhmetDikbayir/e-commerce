@@ -21,7 +21,16 @@ public class ProductController {
     public ResponseEntity<ProductResponse> saveProduct(@RequestBody @Valid ProductRequest productRequest){
         return productService.saveProduct(productRequest);
     }
+    @GetMapping("/{productId}")  //http://localhost:8080/products/1 +GET
+    //@PreAuthoritize("ADMIN")
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long productId){
+        return productService.getProductById(productId);
+    }
 
+    @DeleteMapping("/{productId}")
+    public ResponseEntity<String> deleteProductById(@PathVariable Long productId){
+        return productService.deleteProductById(productId);
+    }
 
 
 
