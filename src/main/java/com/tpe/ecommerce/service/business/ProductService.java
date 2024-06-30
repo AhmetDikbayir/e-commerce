@@ -2,7 +2,9 @@ package com.tpe.ecommerce.service.business;
 
 
 import com.tpe.ecommerce.entity.business.Product;
+import com.tpe.ecommerce.exceptions.BadRequestException;
 import com.tpe.ecommerce.payload.mapper.business.ProductMapper;
+import com.tpe.ecommerce.payload.messages.ErrorMessages;
 import com.tpe.ecommerce.payload.request.business.ProductRequest;
 import com.tpe.ecommerce.payload.response.business.ProductResponse;
 import com.tpe.ecommerce.repository.business.ProductRepository;
@@ -18,22 +20,47 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final MethodHelper methodHelper;
+
     public ResponseEntity<ProductResponse> saveProduct(ProductRequest productRequest) {
 
-        //TODO: Do controls before
+        //stock should not be negative
+        if(productRequest.getStock()<0){
+            throw new BadRequestException(ErrorMessages.PRODUCT_STOCK_SHOULD_BIGGER_ZERO);
+        }
+
+        //price should bigger than zero
+        if(productRequest.getPrice()<=0){
+            throw new BadRequestException(ErrorMessages.PRODUCT_PRICE_SHOULD_BIGGER_ZERO);
+        }
+
+        //productName should be unique
+        for(Product product: productRepository.findAll()){
+            if(product.getProductName().equalsIgnoreCase(productRequest.getProductName())){
+                throw new BadRequestException(ErrorMessages.PRODUCT_ALREADY_EXIST);
+            }
+        }
 
         Product savedProduct = productMapper.productRequestToProduct(productRequest);
         productRepository.save(savedProduct);
 
         return ResponseEntity.ok(productMapper.productToProductResponse(savedProduct));
-
     }
-
     public ResponseEntity<ProductResponse> getProductById(Long productId) {
         Product foundProduct = methodHelper.isProductExist(productId);
         return ResponseEntity.ok(productMapper.productToProductResponse(foundProduct));
     }
+    public ResponseEntity<ProductResponse> deleteProductById(Long productId) {
 
-    public ResponseEntity<String> deleteProductById(Long productId) {
+        Product deletedProduct = methodHelper.isProductExist(productId);
+        productRepository.delete(deletedProduct);
+        return ResponseEntity.ok(productMapper.productToProductResponse(deletedProduct));
+    }
+
+    public ResponseEntity<ProductResponse> increaseProductPrice(Long productId, ProductRequest productRequest) {
+        methodHelper.isProductExist(productId);
+        //TODO: Product id should map in mapper
+        Product updatedProduct = productMapper.productRequestToProduct(productRequest);
+        productRepository.save(updatedProduct);
+        return ResponseEntity.ok(productMapper.productToProductResponse(updatedProduct));
     }
 }

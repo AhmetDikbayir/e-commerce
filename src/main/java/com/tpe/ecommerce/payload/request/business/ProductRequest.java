@@ -24,6 +24,8 @@ public class ProductRequest {
     @NotEmpty(message = "Brand cannot be empty!!")
     private String brand;
 
+    private String Description;
+
     @NotNull(message = "Stock cannot be null")
     private Integer stock;
 

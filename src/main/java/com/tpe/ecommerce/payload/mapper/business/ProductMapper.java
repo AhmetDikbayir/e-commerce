@@ -15,6 +15,7 @@ public class ProductMapper {
                 .brand(product.getBrand())
                 .price(product.getPrice())
                 .stock(product.getStock())
+                .description(product.getDescription())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class ProductMapper {
                 .brand(productRequest.getBrand())
                 .price(productRequest.getPrice())
                 .stock(productRequest.getStock())
+                .description(productRequest.getDescription())
                 .build();
     }
 
