@@ -33,4 +33,7 @@ public class ProductService {
         Product foundProduct = methodHelper.isProductExist(productId);
         return ResponseEntity.ok(productMapper.productToProductResponse(foundProduct));
     }
+
+    public ResponseEntity<String> deleteProductById(Long productId) {
+    }
 }
