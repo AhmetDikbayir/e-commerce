@@ -19,4 +19,6 @@ public class MethodHelper {
         return productRepository.findById(productId)
                 .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.PRODUCT_NOT_FOUND, productId)));
     }
+
+    public Integer isStockBiggerThanOrEqualZero()
 }

@@ -17,19 +17,26 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/save")  //http:localhost://8080/products/save
-    //@PreAuthorize("ADMIN")
+    //@PreAuthorize("hasAnyAuthority('ADMIN','SELLER)")
     public ResponseEntity<ProductResponse> saveProduct(@RequestBody @Valid ProductRequest productRequest){
         return productService.saveProduct(productRequest);
     }
     @GetMapping("/{productId}")  //http://localhost:8080/products/1 +GET
-    //@PreAuthoritize("ADMIN")
+    //@PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable Long productId){
         return productService.getProductById(productId);
     }
 
-    @DeleteMapping("/{productId}")
-    public ResponseEntity<String> deleteProductById(@PathVariable Long productId){
+    @DeleteMapping("/{productId}") //http://localhost:8080/products/2 +DELETE
+    //@PreAuthorize("hasAnyAuthority('ADMIN','SELLER')")
+    public ResponseEntity<ProductResponse> deleteProductById(@PathVariable Long productId){
         return productService.deleteProductById(productId);
+    }
+
+    @PutMapping("/{productId}")
+    //@PreAuthorize("hasAnyAuthority('ADMIN','SELLER')")
+    public ResponseEntity<ProductResponse> updateProductPrice(@PathVariable Long productId, @RequestBody ProductRequest productRequest){
+        return productService.increaseProductPrice(productId, productRequest);
     }
 
 

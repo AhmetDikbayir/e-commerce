@@ -18,13 +18,13 @@ public class Product {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-
     @Column(nullable = false, unique = true)
     private String productName;
 
-
     @Column(nullable = false)
     private String brand;
+
+    private String description;
 
     @Column(nullable = false)
     private Integer stock;
