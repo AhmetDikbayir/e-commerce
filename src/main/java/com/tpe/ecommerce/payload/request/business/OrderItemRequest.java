@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -23,6 +24,8 @@ public class OrderItemRequest {
 
     @NotNull(message = "Please enter a product")
     private Product product;
+
+    private LocalDateTime orderDate;
 
     @NotNull(message = "Customer field cannot be null")
     private User customer;
