@@ -1,5 +1,6 @@
 package com.tpe.ecommerce.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tpe.ecommerce.entity.business.OrderItem;
 import com.tpe.ecommerce.entity.enums.Gender;
 import lombok.*;
@@ -25,6 +26,9 @@ public class User {
     @Column(nullable = false, length = 50)
     private String lastName;
 
+    @Column(unique = true)
+    private String ssn;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -38,6 +42,10 @@ public class User {
 
     @OneToMany(mappedBy = "customer")
     private Set<OrderItem> orders;
+
+    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private UserRole userRole;
 
 
 }

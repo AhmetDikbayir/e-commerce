@@ -13,6 +13,10 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class UserRequest {
+
+    //!!!! User Request User a göre güncellenecek!!!!
+
+
     @NotNull(message = "Name cannot be null!")
     @NotEmpty(message = "Name cannot be empty")
     @Size(min = 2, max = 50, message = "Your name should be at least 2 chars")
@@ -24,6 +28,11 @@ public class UserRequest {
     @Size(min = 2, max = 50, message = "Your lastname should be at least 2 chars")
     @Pattern(regexp = "\\A(?!\\s*\\Z).+", message = "Your username must consist of the characters.")
     private String lastName;
+
+    @NotNull
+    @Pattern(regexp = "^(?!000|666)[0-8][0-9]{2}-(?!00)[0-9]{2}-(?!0000)[0-9]{4}$",
+            message = "Please enter valid SSN number")
+    private String ssn;
 
     @NotNull(message = "Email cannot be null!")
     @NotEmpty(message = "Email cannot be empty")

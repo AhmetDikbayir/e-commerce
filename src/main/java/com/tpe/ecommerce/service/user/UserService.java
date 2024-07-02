@@ -20,6 +20,7 @@ public class UserService {
     private final CustomerRepository customerRepository;
     private UserMapper customerMapper;
     public void saveUser(UserRequest customerRequest) {
+        //TODO: Kontroller yapılacak
         User customer = customerMapper.customerRequestToCustomer(customerRequest);
         customerRepository.save(customer);
     }
@@ -62,8 +63,5 @@ public class UserService {
         customerRepository.save(updatedCustomer);
 
         return customerMapper.customerToCustomerResponse(updatedCustomer);
-
-
-
     }
 }

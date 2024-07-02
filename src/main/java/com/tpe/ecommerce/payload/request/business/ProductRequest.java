@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,8 @@ public class ProductRequest {
     @NotEmpty(message = "Brand cannot be empty!!")
     private String brand;
 
-    private String Description;
+    @Size(min = 0, max = 1000)
+    private String description;
 
     @NotNull(message = "Stock cannot be null")
     private Integer stock;
