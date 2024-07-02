@@ -14251,4 +14251,25 @@ Caused by: org.postgresql.util.PSQLException: HATA: "fkkgu3wv2n7r2shg2wbvc4nsu7l
 ""2024-07-02 19:04:30,498 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
 ""2024-07-02 19:04:30,500 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
 ""2024-07-02 19:04:30,503 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2024-07-02 19:06:04,336 INFO  [main] com.tpe.ecommerce.EcommerceApplication:Starting EcommerceApplication using Java 17.0.9 on Dell with PID 30568 (C:\Users\adikb\IdeaProjects\ecommerce\target\classes started by adikb in C:\Users\adikb\IdeaProjects\ecommerce)
+""2024-07-02 19:06:04,339 INFO  [main] com.tpe.ecommerce.EcommerceApplication:No active profile set, falling back to 1 default profile: "default"
+""2024-07-02 19:06:05,794 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2024-07-02 19:06:05,873 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 65 ms. Found 4 JPA repository interfaces.
+""2024-07-02 19:06:06,894 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8080 (http)
+""2024-07-02 19:06:06,905 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2024-07-02 19:06:06,906 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2024-07-02 19:06:07,048 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2024-07-02 19:06:07,049 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 2661 ms
+""2024-07-02 19:06:07,595 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2024-07-02 19:06:07,658 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2024-07-02 19:06:07,964 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2024-07-02 19:06:08,109 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2024-07-02 19:06:08,326 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2024-07-02 19:06:08,345 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2024-07-02 19:06:09,262 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2024-07-02 19:06:09,268 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-02 19:06:10,098 WARN  [main] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration:spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+""2024-07-02 19:06:11,004 INFO  [main] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 1 endpoint(s) beneath base path '/actuator'
+""2024-07-02 19:06:11,114 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
+""2024-07-02 19:06:11,137 INFO  [main] com.tpe.ecommerce.EcommerceApplication:Started EcommerceApplication in 7.302 seconds (JVM running for 7.725)
 "
