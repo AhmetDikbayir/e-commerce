@@ -14272,4 +14272,7 @@ Caused by: org.postgresql.util.PSQLException: HATA: "fkkgu3wv2n7r2shg2wbvc4nsu7l
 ""2024-07-02 19:06:11,004 INFO  [main] org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver:Exposing 1 endpoint(s) beneath base path '/actuator'
 ""2024-07-02 19:06:11,114 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8080 (http) with context path ''
 ""2024-07-02 19:06:11,137 INFO  [main] com.tpe.ecommerce.EcommerceApplication:Started EcommerceApplication in 7.302 seconds (JVM running for 7.725)
+""2024-07-02 19:07:33,286 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2024-07-02 19:07:33,289 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2024-07-02 19:07:33,291 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
 "
