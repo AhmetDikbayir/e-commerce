@@ -1,14 +1,17 @@
 package com.tpe.ecommerce.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.tpe.ecommerce.entity.business.OrderItem;
+import com.tpe.ecommerce.entity.business.Cart;
+import com.tpe.ecommerce.entity.business.Order;
 import com.tpe.ecommerce.entity.enums.Gender;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "t_user")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -38,14 +41,17 @@ public class User {
     @Column(nullable = false, length = 12)
     private String phoneNumber;
 
+    @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "customer")
-    private Set<OrderItem> orders;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
-    @OneToOne
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private UserRole userRole;
+    @OneToMany(mappedBy = "user")
+    private List<Cart> carts;
 
+//    @OneToOne
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    private UserRole userRole;
 
 }

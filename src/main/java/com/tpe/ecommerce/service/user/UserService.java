@@ -6,7 +6,7 @@ import com.tpe.ecommerce.exceptions.ResourceNotFoundException;
 import com.tpe.ecommerce.payload.mapper.user.UserMapper;
 import com.tpe.ecommerce.payload.request.user.UserRequest;
 import com.tpe.ecommerce.payload.response.user.UserResponse;
-import com.tpe.ecommerce.repository.business.CustomerRepository;
+import com.tpe.ecommerce.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +17,26 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
     private UserMapper customerMapper;
     public void saveUser(UserRequest customerRequest) {
         //TODO: Kontroller yapılacak
         User customer = customerMapper.customerRequestToCustomer(customerRequest);
-        customerRepository.save(customer);
+        userRepository.save(customer);
     }
 
     public User findById(Long id){
-        User customer = customerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
+        User customer = userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
         return customer;
     }
     public UserResponse getById(Long id) {
-        User customer = customerRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
+        User customer = userRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Customer not found: " + id));
         UserResponse customerResponse = customerMapper.customerToCustomerResponse(customer);
         return customerResponse;
     }
 
     public List<UserResponse> getAll() {
-        List<User> customers =  customerRepository.findAll();
+        List<User> customers =  userRepository.findAll();
         List<UserResponse> customerDTOS = customers.stream()
                 .map(customerMapper::customerToCustomerResponse)
                 .collect(Collectors.toList());
@@ -45,14 +45,14 @@ public class UserService {
 
     public void deleteById(Long id) {
         UserResponse customerResponse = getById(id);
-        customerRepository.deleteById(id);
+        userRepository.deleteById(id);
 
     }
 
 
     public UserResponse updateCustomer(Long id, UserRequest customerRequest) {
         User updatedCustomer = findById(id);
-        Boolean isEmailExist = customerRepository.existsByEmail(customerRequest.getEmail());
+        Boolean isEmailExist = userRepository.existsByEmail(customerRequest.getEmail());
         if(isEmailExist && updatedCustomer.getEmail().equals(customerRequest.getEmail())){
             throw new ConflictException("Email is already exists");
         }
@@ -60,7 +60,7 @@ public class UserService {
         updatedCustomer.setName(customerRequest.getName());
         updatedCustomer.setLastName(customerRequest.getLastName());
         updatedCustomer.setPhoneNumber(customerRequest.getPhoneNumber());
-        customerRepository.save(updatedCustomer);
+        userRepository.save(updatedCustomer);
 
         return customerMapper.customerToCustomerResponse(updatedCustomer);
     }
