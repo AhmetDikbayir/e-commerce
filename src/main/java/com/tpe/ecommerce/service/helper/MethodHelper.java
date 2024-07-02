@@ -20,5 +20,7 @@ public class MethodHelper {
                 .orElseThrow(()-> new ResourceNotFoundException(String.format(ErrorMessages.PRODUCT_NOT_FOUND, productId)));
     }
 
-    public Integer isStockBiggerThanOrEqualZero()
+    public Integer isStockBiggerThanOrEqualZero(){
+        return null;
+    }
 }

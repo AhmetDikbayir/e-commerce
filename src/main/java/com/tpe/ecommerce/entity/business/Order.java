@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "customer_order")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,14 +21,16 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
+    @Column(nullable = false)
+    private Double totalAmount;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private User customer;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems;
 
-    @Column(nullable = false)
-    private Double totalAmount;
+
 
 }
