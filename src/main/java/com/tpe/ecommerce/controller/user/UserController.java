@@ -48,6 +48,11 @@ public class UserController {
         return new ResponseEntity<>(userService.updateCustomer(id, customerRequest), HttpStatus.OK);
     }
 
+    @GetMapping("/fullquery")
+    public ResponseEntity<List<UserResponse>> getAllUserByFullName(@RequestParam("name") String name, @RequestParam("lastName") String lastName){
+        return ResponseEntity.ok(userService.getAllUserByFullName(name, lastName));
+    }
+
 
 
 }

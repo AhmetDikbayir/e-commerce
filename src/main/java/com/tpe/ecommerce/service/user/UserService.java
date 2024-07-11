@@ -10,6 +10,7 @@ import com.tpe.ecommerce.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+
     private UserMapper customerMapper;
     public void saveUser(UserRequest customerRequest) {
         //TODO: Kontroller yapılacak
@@ -64,4 +66,14 @@ public class UserService {
 
         return customerMapper.customerToCustomerResponse(updatedCustomer);
     }
+    public List<UserResponse> getAllUserByFullName(String name, String lastName) {
+        List<User> foundUserList = userRepository.findByUserFullName(name, lastName);
+        List<UserResponse> foundUserResponseList = new ArrayList<>();
+        for(User foundUser : foundUserList){
+            UserResponse foundUserResponse = customerMapper.customerToCustomerResponse(foundUser);
+            foundUserResponseList.add(foundUserResponse);
+        }
+        return foundUserResponseList;
+    }
+
 }
