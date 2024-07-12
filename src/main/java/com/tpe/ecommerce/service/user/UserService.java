@@ -76,4 +76,14 @@ public class UserService {
         return foundUserResponseList;
     }
 
+    public List<UserResponse> getAllUsersByContainsName(String name) {
+        List<User> foundUsersList = userRepository.getAllUsersByContainsName(name);
+        List<UserResponse> foundUserResponseList = new ArrayList<>();
+        for(User foundUser : foundUsersList){
+            UserResponse foundUserResponse = customerMapper.customerToCustomerResponse(foundUser);
+            foundUserResponseList.add(foundUserResponse);
+        }
+        return foundUserResponseList;
+
+    }
 }

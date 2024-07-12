@@ -49,8 +49,14 @@ public class UserController {
     }
 
     @GetMapping("/fullquery")
-    public ResponseEntity<List<UserResponse>> getAllUserByFullName(@RequestParam("name") String name, @RequestParam("lastName") String lastName){
+    public ResponseEntity<List<UserResponse>> getAllUserByFullName(
+            @RequestParam("name") String name, @RequestParam("lastName") String lastName){
         return ResponseEntity.ok(userService.getAllUserByFullName(name, lastName));
+    }
+
+    @GetMapping("/jpql")
+    public ResponseEntity<List<UserResponse>> getAllUsersByContainsName(@RequestParam("name") String name){
+        return ResponseEntity.ok(userService.getAllUsersByContainsName(name));
     }
 
 
