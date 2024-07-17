@@ -4,6 +4,7 @@ import com.tpe.ecommerce.payload.request.user.UserRequest;
 import com.tpe.ecommerce.payload.response.user.UserResponse;
 import com.tpe.ecommerce.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,16 @@ public class UserController {
     @GetMapping("/jpql")
     public ResponseEntity<List<UserResponse>> getAllUsersByContainsName(@RequestParam("name") String name){
         return ResponseEntity.ok(userService.getAllUsersByContainsName(name));
+    }
+
+    @GetMapping("/byPage")
+    // http://localhost:8080/customers/page?page=1&size=2&sort=id&direction=ASC
+    public ResponseEntity<Page<UserResponse>> getAllCustomersByPage(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size",defaultValue = "2") int size,
+            @RequestParam(value = "sort",defaultValue = "id") String sort,
+            @RequestParam(value = "type",defaultValue = "asc") String type){
+        return userService.getAllCustomersByPage(page,size,sort,type);
     }
 
 

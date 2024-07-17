@@ -7,7 +7,12 @@ import com.tpe.ecommerce.payload.mapper.user.UserMapper;
 import com.tpe.ecommerce.payload.request.user.UserRequest;
 import com.tpe.ecommerce.payload.response.user.UserResponse;
 import com.tpe.ecommerce.repository.user.UserRepository;
+import com.tpe.ecommerce.service.helper.MethodHelper;
+import com.tpe.ecommerce.service.helper.PageableHelper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +24,8 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PageableHelper pageableHelper;
+    private final UserMapper userMapper;
 
     private UserMapper customerMapper;
     public void saveUser(UserRequest customerRequest) {
@@ -85,5 +92,11 @@ public class UserService {
         }
         return foundUserResponseList;
 
+    }
+
+    public ResponseEntity<Page<UserResponse>> getAllCustomersByPage(int page, int size, String sort, String type) {
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+
+        return ResponseEntity.ok(userRepository.findAll(pageable).map(userMapper::customerToCustomerResponse));
     }
 }
