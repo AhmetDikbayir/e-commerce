@@ -1,18 +1,15 @@
 package com.tpe.ecommerce.entity.business;
 
-import com.tpe.ecommerce.entity.user.User;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder(toBuilder = true)
-public class OrderItem {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
