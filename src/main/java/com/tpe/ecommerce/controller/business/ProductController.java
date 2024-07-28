@@ -4,6 +4,7 @@ import com.tpe.ecommerce.payload.request.business.ProductRequest;
 import com.tpe.ecommerce.payload.response.business.ProductResponse;
 import com.tpe.ecommerce.service.business.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +36,17 @@ public class ProductController {
 
     @PutMapping("/{productId}")
     //@PreAuthorize("hasAnyAuthority('ADMIN','SELLER')")
-    public ResponseEntity<ProductResponse> updateProductPrice(@PathVariable Long productId, @RequestBody ProductRequest productRequest){
-        return productService.increaseProductPrice(productId, productRequest);
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long productId, @RequestBody ProductRequest productRequest){
+        return productService.updateProductPrice(productId, productRequest);
+    }
+
+    @GetMapping("/allProducts")
+    public Page<ProductResponse> findProductByPage(
+            @RequestParam(value = "page") int page,
+            @RequestParam(value = "size") int size,
+            @RequestParam(value = "sort") String sort,
+            @RequestParam(value = "type") String type){
+        return productService.findProductByPage(page,size,sort,type);
     }
 
 

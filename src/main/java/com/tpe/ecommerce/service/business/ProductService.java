@@ -9,7 +9,10 @@ import com.tpe.ecommerce.payload.request.business.ProductRequest;
 import com.tpe.ecommerce.payload.response.business.ProductResponse;
 import com.tpe.ecommerce.repository.business.ProductRepository;
 import com.tpe.ecommerce.service.helper.MethodHelper;
+import com.tpe.ecommerce.service.helper.PageableHelper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final MethodHelper methodHelper;
+    private final PageableHelper pageableHelper;
 
     public ResponseEntity<ProductResponse> saveProduct(ProductRequest productRequest) {
 
@@ -56,11 +60,16 @@ public class ProductService {
         return ResponseEntity.ok(productMapper.productToProductResponse(deletedProduct));
     }
 
-    public ResponseEntity<ProductResponse> increaseProductPrice(Long productId, ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> updateProductPrice(Long productId, ProductRequest productRequest) {
         methodHelper.isProductExist(productId);
         //TODO: Product id should map in mapper
         Product updatedProduct = productMapper.productRequestToProduct(productRequest);
         productRepository.save(updatedProduct);
         return ResponseEntity.ok(productMapper.productToProductResponse(updatedProduct));
+    }
+
+    public Page<ProductResponse> findProductByPage(int page, int size, String sort, String type) {
+        Pageable pageable = pageableHelper.getPageableWithProperties(page, size, sort, type);
+        return productRepository.findAll(pageable).map(productMapper:: productToProductResponse);
     }
 }
